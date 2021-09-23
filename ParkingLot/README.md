@@ -16,7 +16,7 @@ exit_g2                                     exit_g3
 
 ——————————-Floor2——————————-  
 
-entry_g0                                            entry_g1  
+entry_g0                                            entry_g1   
 exit_g0(0,-1)   s10(0,0)    s11(0,1)    s12(0,2)    exit_g1(0,3)  
                 s13(1,0)    s14(1,1)    s15(1,2)  
 entry_g2(2,-1)  s16(2,0)    s17(2,1)    s18(2,2)    entry_g3(2,3)  
