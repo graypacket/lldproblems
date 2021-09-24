@@ -7,7 +7,7 @@
 * 
 * Copyright (c) 2021 ProCoderFast
 */
-package ParkingTicket;
+package parkingticket;
 public class Ticket {
     private int slotId;
     private String vehicleRegNo;

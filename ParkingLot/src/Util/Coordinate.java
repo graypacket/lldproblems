@@ -7,7 +7,7 @@
 * 
 * Copyright (c) 2021 ProCoderFast
 */
-package Util;
+package util;
 public class Coordinate {
     private int coordX;
     private int coordY;

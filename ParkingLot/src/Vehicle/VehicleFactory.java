@@ -7,7 +7,7 @@
 * 
 * Copyright (c) 2021 ProCoderFast
 */
-package Vehicle;
+package vehicle;
 
 public class VehicleFactory {
     public static Vehicle getInstance(String vehicleType, String regNo, Colour colour, int slotId) {

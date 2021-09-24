@@ -7,7 +7,7 @@
 * 
 * Copyright (c) 2021 ProCoderFast
 */
-package Vehicle;
+package vehicle;
 public class Car extends Vehicle {
     public Car(String regNo, Colour colour, int slotId) {
         super(regNo, colour, slotId);

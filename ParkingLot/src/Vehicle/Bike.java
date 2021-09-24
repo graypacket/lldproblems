@@ -7,7 +7,7 @@
 * 
 * Copyright (c) 2021 ProCoderFast
 */
-package Vehicle;
+package vehicle;
 public class Bike extends Vehicle {
     
     public Bike(String regNo, Colour colour, int slotId) {

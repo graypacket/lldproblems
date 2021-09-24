@@ -7,9 +7,9 @@
 * 
 * Copyright (c) 2021 ProCoderFast
 */
-package ParkingSlotAssigner;
+package parkingslotassigner;
 
-import Vehicle.Vehicle;
+import vehicle.Vehicle;
 
 public interface ParkingSlotAssignmentStrategy {
     public int getAssignedSlotId(Vehicle vehicle, int entryGateNo);

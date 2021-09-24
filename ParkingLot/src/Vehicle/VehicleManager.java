@@ -7,7 +7,7 @@
 * 
 * Copyright (c) 2021 ProCoderFast
 */
-package Vehicle;
+package vehicle;
 
 import java.util.List;
 import java.util.ArrayList;

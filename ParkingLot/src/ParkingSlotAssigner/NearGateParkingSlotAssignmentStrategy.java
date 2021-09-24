@@ -7,7 +7,7 @@
 * 
 * Copyright (c) 2021 ProCoderFast
 */
-package ParkingSlotAssigner;
+package parkingslotassigner;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -17,11 +17,11 @@ import java.util.HashSet;
 import java.util.PriorityQueue;
 import java.util.HashMap;
 
-import ParkingFloor.FloorObject;
-import ParkingFloor.Gate;
-import ParkingFloor.ParkingFloor;
-import ParkingFloor.Slot;
-import Vehicle.Vehicle;
+import vehicle.Vehicle;
+import parkingfloor.FloorObject;
+import parkingfloor.Gate;
+import parkingfloor.ParkingFloor;
+import parkingfloor.Slot;
 
 public class NearGateParkingSlotAssignmentStrategy implements ParkingSlotAssignmentStrategy {
     

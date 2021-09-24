@@ -7,9 +7,9 @@
 * 
 * Copyright (c) 2021 ProCoderFast
 */
-package ParkingSlotAssigner;
+package parkingslotassigner;
 
-import Vehicle.Vehicle;
+import vehicle.Vehicle;
 
 public class ParkingSlotAssigner {
     private ParkingSlotAssignmentStrategy slotAssignmentStrategy;

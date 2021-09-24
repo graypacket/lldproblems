@@ -7,9 +7,9 @@
 * 
 * Copyright (c) 2021 ProCoderFast
 */
-package ParkingFloor;
+package parkingfloor;
 
-import Util.Coordinate;
+import util.Coordinate;
 
 public class Gate implements FloorObject {
     private Coordinate coord;

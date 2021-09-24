@@ -7,18 +7,18 @@
 * 
 * Copyright (c) 2021 ProCoderFast
 */
-import ParkingTicket.Ticket;
-import Util.Coordinate;
-import Vehicle.Colour;
-import Vehicle.Vehicle;
-import Vehicle.VehicleFactory;
-import Vehicle.VehicleManager;
-import ParkingFloor.FloorObject;
-import ParkingFloor.Gate;
-import ParkingFloor.ParkingFloor;
-import ParkingFloor.Slot;
-import ParkingSlotAssigner.NearGateParkingSlotAssignmentStrategy;
-import ParkingSlotAssigner.ParkingSlotAssigner;
+import parkingfloor.FloorObject;
+import parkingfloor.Gate;
+import parkingfloor.ParkingFloor;
+import parkingfloor.Slot;
+import parkingslotassigner.NearGateParkingSlotAssignmentStrategy;
+import parkingslotassigner.ParkingSlotAssigner;
+import parkingticket.Ticket;
+import util.Coordinate;
+import vehicle.Colour;
+import vehicle.Vehicle;
+import vehicle.VehicleFactory;
+import vehicle.VehicleManager;
 
 import java.util.ArrayList;
 import java.util.HashMap;

@@ -7,7 +7,7 @@
 * 
 * Copyright (c) 2021 ProCoderFast
 */
-package Vehicle;
+package vehicle;
 
 public class Bus extends Vehicle {
     
