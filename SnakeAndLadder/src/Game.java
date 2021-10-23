@@ -1,3 +1,12 @@
+/*
+* License Information
+* 
+* The provided codebase is for personal use only.
+* You can alter/modify the code for your own personal use.
+* Redistribution of code is not permitted.
+* 
+* Copyright (c) 2021 ProCoderFast
+*/
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
