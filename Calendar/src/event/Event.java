@@ -57,9 +57,11 @@ public class Event {
         this.start = start;
     }
     public Date getEnd() {
+        if(start.compareTo(end) > 0) return start;
         return end;
     }
     protected void setEnd(Date end) {
+        if(start.compareTo(end) > 0) return;
         this.end = end;
     }
     public String getLocation() {
@@ -117,5 +119,9 @@ public class Event {
     public void rejectEvent(User user) {
         guestsAccepted.remove(user);
         guestsRejected.add(user);
+    }
+
+    public List<User> getGuests() {
+        return guests;
     }
 }
