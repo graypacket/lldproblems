@@ -28,6 +28,7 @@ public class Event {
         this.title = title;
         this.description = description;
         this.start = start;
+        if(end.compareTo(start) < 0) end = start;
         this.end = end;
         this.location = location;
         this.owner = owner;
