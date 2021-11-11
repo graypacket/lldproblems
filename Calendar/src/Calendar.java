@@ -1,5 +1,6 @@
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
@@ -40,16 +41,11 @@ public class Calendar {
                         }
                         String title = inputScanner.nextLine("Title");
                         String description = inputScanner.nextLine("Description");
-                        String startDate = inputScanner.nextLine(String.format("Start (%s)", "dd-mm-yyyy hh:mm"));
-                        Date start;
-                        if(startDate.isEmpty()) start = new Date();
-                        else start = new SimpleDateFormat(DATE_TIME_FORMAT).parse(startDate);
                         
-                        String endDate = inputScanner.nextLine(String.format("End (%s)", "dd-mm-yyyy hh:mm"));
-                        Date end;
-                        if(endDate.isEmpty()) end = new Date();
-                        else end = new SimpleDateFormat(DATE_TIME_FORMAT).parse(endDate);
-
+                        Date start = readDate(inputScanner.nextLine(String.format("Start (%s)", "dd-mm-yyyy hh:mm")), DATE_TIME_FORMAT);
+                        
+                        Date end = readDate(inputScanner.nextLine(String.format("End (%s)", "dd-mm-yyyy hh:mm")), DATE_TIME_FORMAT);
+                        
                         String location = inputScanner.nextLine("Location");
 
                         int numGuests = Integer.valueOf(inputScanner.nextLine("Number of guests"));
@@ -84,6 +80,21 @@ public class Calendar {
                         Event event = eventManager.getEvent((int) Integer.valueOf(inputScanner.nextLine("Event id")));
                         System.out.println(event);
                         break;
+                    case "get_free_slots":
+                        int numUsers = Integer.valueOf(inputScanner.nextLine("Num users"));
+                        List<User> users = new ArrayList<>();
+                        while(numUsers-- > 0) {
+                            User user_ = userManager.getUser(inputScanner.nextLine("username"));
+                            if(user_ != null)
+                                users.add(user_);
+                        }
+                        Date date = readDate(inputScanner.nextLine(String.format("Date (%s)", "dd-mm-yyyy")), DAY_FORMAT);
+                        
+                        List<Date[]> slots = eventManager.getFreeSlotsForUsers(users, date);
+                        for(Date[] slot : slots) {
+                            System.out.println(String.format("%s to %s", slot[0], slot[1]));
+                        }
+                        break;
                     default:
                         System.out.println("INVALID CMD!");
                 }
@@ -93,5 +104,14 @@ public class Calendar {
             }
         }
         inputScanner.close();
+    }
+
+    private static Date readDate(String inputDate, String format) throws ParseException {
+        Date date = null;
+        if(inputDate.isEmpty()) {
+            inputDate = new SimpleDateFormat(format).format(new Date());
+        }
+        date = new SimpleDateFormat(format).parse(inputDate);  
+        return date;
     }
 }
