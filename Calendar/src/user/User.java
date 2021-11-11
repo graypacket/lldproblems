@@ -34,4 +34,8 @@ public class User {
     protected void setUsername(String username) {
         this.username = username;
     }
+
+    public String toString() {
+        return String.format("Name: %s %s, username: %s", firstName, lastName, username);
+    }
 }

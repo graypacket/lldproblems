@@ -2,6 +2,7 @@ package event;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.PriorityQueue;
+import java.util.Set;
 import java.util.Map.Entry;
 import java.util.AbstractMap.SimpleEntry;
 
@@ -27,6 +28,7 @@ public class EventManager {
     }
 
     public Event createEvent(User user, String title) {
+        if(user == null) return null;
         Event event = new Event(++autoIncrementingEventId, user, title);
         events.put(event.getId(), event);
 
@@ -37,6 +39,23 @@ public class EventManager {
         return event;
     }
 
+    public Event createEvent(User user, String title, String description, Date start, Date end, String location, Set<User> guests) {
+        List<User> guestList = new ArrayList<>();
+        for(User guest : guests) {
+            if(!guest.equals(user))
+                guestList.add(guest);
+        }
+
+        Event event = new Event(++autoIncrementingEventId, user, title, description, start, end, location, guestList);
+        events.put(event.getId(), event);
+
+        if(!userToEventsMapping.containsKey(user))
+            userToEventsMapping.put(user, new ArrayList<>());
+
+        userToEventsMapping.get(user).add(event);
+        return event;
+    }
+    
     public void removeEvent(int eventId) {
         events.remove(eventId);
     }
@@ -124,5 +143,9 @@ public class EventManager {
 
     public void setEventEnd(int id, Date date) {
         events.get(id).setEnd(date);
+    }
+
+    public List<Event> getEvents() {
+        return new ArrayList<Event>(events.values());
     }
 }

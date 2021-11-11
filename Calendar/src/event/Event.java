@@ -23,7 +23,7 @@ public class Event {
         this.title = title;
     }
 
-    protected Event(int eventId, String title, String description, Date start, Date end, String location, User owner, List<User> guests) {
+    protected Event(int eventId, User owner, String title, String description, Date start, Date end, String location, List<User> guests) {
         this.eventId = eventId;
         this.title = title;
         this.description = description;
@@ -72,11 +72,15 @@ public class Event {
     }
 
     protected void addGuest(User guest) {
-        guests.add(guest);
+        System.out.println(guest.getUsername() + guest);
+        System.out.println(owner.getUsername() + owner);
+        if(guest != null && guest != owner)
+            guests.add(guest);
     }
 
     protected void removeGuest(User guest) {
-        guests.remove(guest);
+        if(guest != null)
+            guests.remove(guest);
     }
 
     public User getOwner() {
@@ -84,7 +88,7 @@ public class Event {
     }
 
     public String toString() {
-        StringBuilder event = new StringBuilder(String.format("title: %s, description: %s, start: %s, end: %s, location: %s, owner: %s, guests: ", title, description, start, end, location, owner.getUsername()));
+        StringBuilder event = new StringBuilder(String.format("id: %d, title: %s, description: %s, start: %s, end: %s, location: %s, owner: %s, guests: ", eventId, title, description, start, end, location, owner.getUsername()));
 
         for(User guest : guests) {
             event.append(guest.getUsername() + ", ");
