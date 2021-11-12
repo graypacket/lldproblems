@@ -13,6 +13,7 @@ public class Event {
     private Date end = new Date();
     private String location = "";
     private User owner = null;
+    private EventRepeatFrequency repeatFrequency;
     private List<User> guests = new ArrayList<>();
     private List<User> guestsAccepted = new ArrayList<>();
     private List<User> guestsRejected = new ArrayList<>();
@@ -23,7 +24,7 @@ public class Event {
         this.title = title;
     }
 
-    protected Event(int eventId, User owner, String title, String description, Date start, Date end, String location, List<User> guests) {
+    protected Event(int eventId, User owner, String title, String description, Date start, Date end, String location, List<User> guests, EventRepeatFrequency repeatFrequency) {
         this.eventId = eventId;
         this.title = title;
         this.description = description;
@@ -33,6 +34,7 @@ public class Event {
         this.location = location;
         this.owner = owner;
         this.guests = guests;
+        this.repeatFrequency = repeatFrequency;
     }
 
     public int getId() {
@@ -42,34 +44,51 @@ public class Event {
     public String getTitle() {
         return title;
     }
+
     protected void setTitle(String title) {
         this.title = title;
     }
+
     public String getDescription() {
         return description;
     }
+
     protected void setDescription(String description) {
         this.description = description;
     }
+
     public Date getStart() {
         return start;
     }
+
     protected void setStart(Date start) {
         this.start = start;
     }
+
     public Date getEnd() {
         if(start.compareTo(end) > 0) return start;
         return end;
     }
+
     protected void setEnd(Date end) {
         if(start.compareTo(end) > 0) return;
         this.end = end;
     }
+
     public String getLocation() {
         return location;
     }
+
     protected void setLocation(String location) {
         this.location = location;
+    }
+
+    public EventRepeatFrequency getRepeatFrequency() {
+        return repeatFrequency;
+    }
+
+    protected void setRepeatFrequency(EventRepeatFrequency repeatFrequency) {
+        this.repeatFrequency = repeatFrequency;
     }
 
     protected void addGuest(User guest) {
@@ -89,7 +108,7 @@ public class Event {
     }
 
     public String toString() {
-        StringBuilder event = new StringBuilder(String.format("id: %d, title: %s, description: %s, start: %s, end: %s, location: %s, owner: %s, guests: ", eventId, title, description, start, end, location, owner.getUsername()));
+        StringBuilder event = new StringBuilder(String.format("id: %d, title: %s, description: %s, start: %s, end: %s, location: %s, owner: %s, repeat: %s, guests: ", eventId, title, description, start, end, location, owner.getUsername(), repeatFrequency));
 
         for(User guest : guests) {
             event.append(guest.getUsername() + ", ");

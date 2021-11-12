@@ -10,6 +10,7 @@ import util.ConsoleInputReader;
 
 import event.Event;
 import event.EventManager;
+import event.EventRepeatFrequency;
 import user.User;
 import user.UserManager;
 
@@ -59,7 +60,8 @@ public class Calendar {
                                 numGuests--;
                             }
                         }
-                        eventManager.createEvent(user, title, description, start, end, location, guests);
+                        EventRepeatFrequency recurringFrequency = EventRepeatFrequency.valueOf(inputScanner.nextLine("Recurring (NONE/DAILY/WEEKLY/MONTHLY/YEARLY)"));
+                        eventManager.createEvent(user, title, description, start, end, location, guests, recurringFrequency);
                         break;
                     case "list_events":
                         for(Event event : eventManager.getEvents())
@@ -75,6 +77,12 @@ public class Calendar {
                         List<Event> events = eventManager.getEventsForUser(userManager.getUser(inputScanner.nextLine("username")));
                         for(Event event : events)
                             System.out.println(event);
+                        break;
+                    case "list_events_for_user_by_day":
+                        List<Event> eventsForDay = eventManager.getEventsForUser(userManager.getUser(inputScanner.nextLine("User")), readDate(inputScanner.nextLine("Day (dd-mm-yyyy)"), DAY_FORMAT));
+                        for(Event event : eventsForDay) {
+                            System.out.println(event);
+                        }
                         break;
                     case "describe_event":
                         Event event = eventManager.getEvent((int) Integer.valueOf(inputScanner.nextLine("Event id")));

@@ -7,13 +7,18 @@ import java.util.Map.Entry;
 import java.util.AbstractMap.SimpleEntry;
 
 import user.User;
+import util.DateUtil;
 
 import java.util.List;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Date;
 
 public class EventManager {
+
+    private static final long MILLISECONDS_IN_A_DAY = 24*3600*1000; 
+
     private int autoIncrementingEventId = 0;
     private Map<Integer, Event> events = new HashMap<>();
     private Map<User, List<Event>> userToEventsMapping = new HashMap<>();
@@ -23,8 +28,47 @@ public class EventManager {
     }
 
     public List<Event> getEventsForUser(User user) {
+        if(user == null) return new ArrayList<>();
+
         List<Event> events; 
         return (events = userToEventsMapping.get(user)) == null ? new ArrayList<>() : events;
+    }
+
+    public List<Event> getEventsForUser(User user, Date day) throws ParseException {
+        if(user == null) return new ArrayList<>();
+        
+        List<Event> events = userToEventsMapping.get(user);
+        if(events == null) return new ArrayList<>();
+
+        List<Event> eventsForTheDay = new ArrayList<>();
+        for(Event event : events) {
+            if(DateUtil.getDayEpoch(event.getStart()) > DateUtil.getDayEpoch(day)) continue;
+            switch(event.getRepeatFrequency()) {
+                case NONE:
+                    if((DateUtil.getDayEpoch(event.getStart()) == DateUtil.getDayEpoch(day)))
+                        eventsForTheDay.add(event);
+                    break;
+                case DAILY:
+                    if((DateUtil.getDayEpoch(event.getStart()) - DateUtil.getDayEpoch(day)) % MILLISECONDS_IN_A_DAY == 0)
+                        eventsForTheDay.add(event);
+                    break;
+                case WEEKLY:
+                    if(DateUtil.getWeekDay(event.getStart()).equals(DateUtil.getWeekDay(day)))
+                        eventsForTheDay.add(event);
+                    break;
+                case MONTHLY:
+                    if(DateUtil.getDayInMonth(event.getStart()) == DateUtil.getDayInMonth(day))
+                        eventsForTheDay.add(event);
+                    break;
+                case YEARLY:
+                    if(DateUtil.getDayAndMonth(event.getStart()).equals(DateUtil.getDayAndMonth(day)))
+                        eventsForTheDay.add(event);
+                    break;
+                default:
+                    break;
+            }
+        }
+        return eventsForTheDay;
     }
 
     public Event createEvent(User user, String title) {
@@ -39,14 +83,14 @@ public class EventManager {
         return event;
     }
 
-    public Event createEvent(User user, String title, String description, Date start, Date end, String location, Set<User> guests) {
+    public Event createEvent(User user, String title, String description, Date start, Date end, String location, Set<User> guests, EventRepeatFrequency repeatFrequency) {
         List<User> guestList = new ArrayList<>();
         for(User guest : guests) {
             if(!guest.equals(user))
                 guestList.add(guest);
         }
 
-        Event event = new Event(++autoIncrementingEventId, user, title, description, start, end, location, guestList);
+        Event event = new Event(++autoIncrementingEventId, user, title, description, start, end, location, guestList, repeatFrequency);
         events.put(event.getId(), event);
 
         if(!userToEventsMapping.containsKey(user))
