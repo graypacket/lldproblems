@@ -135,12 +135,12 @@ public class Event {
         return event.toString();
     }
 
-    public void acceptEvent(User user) {
+    protected void acceptEvent(User user) {
         guestsRejected.remove(user);
         guestsAccepted.add(user);
     }
 
-    public void rejectEvent(User user) {
+    protected void rejectEvent(User user) {
         guestsAccepted.remove(user);
         guestsRejected.add(user);
     }
