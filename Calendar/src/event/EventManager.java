@@ -97,6 +97,13 @@ public class EventManager {
             userToEventsMapping.put(user, new ArrayList<>());
 
         userToEventsMapping.get(user).add(event);
+        
+        for(User guest : guestList) {
+            if(!userToEventsMapping.containsKey(guest))
+                userToEventsMapping.put(guest, new ArrayList<>());
+            userToEventsMapping.get(guest).add(event);
+        }
+
         return event;
     }
     

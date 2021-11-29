@@ -27,6 +27,9 @@ public class Calendar {
             String input = inputScanner.nextLine("");
             try {
                 switch(input.strip()) {
+                    case "":
+                        continue;
+
                     case "create_user":
                         userManager.createUser(inputScanner.nextLine("First name"), inputScanner.nextLine("Last name"), inputScanner.nextLine("Username"));
                         break;
