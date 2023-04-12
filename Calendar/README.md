@@ -1,6 +1,6 @@
 # Design a Calendar Application
 
-The problem statement can be found at https://www.procoderfast.com/low-level-design/problem/calendar.
+The problem statement can be found at /low-level-design/problem/calendar.
 
 ## Design Diagram
 

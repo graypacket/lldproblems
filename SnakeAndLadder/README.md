@@ -1,6 +1,6 @@
 # Design Snake and Ladder
 
-The problem statement can be found at https://www.procoderfast.com/low-level-design/problem/snake-and-ladder.
+The problem statement can be found at /low-level-design/problem/snake-and-ladder.
 
 ## Design Diagram
 

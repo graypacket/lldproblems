@@ -1,6 +1,6 @@
 # Design a Parking Lot
 
-The problem statement can be found at https://www.procoderfast.com/low-level-design/problem/parking-lot.
+The problem statement can be found at /low-level-design/problem/parking-lot.
 
 ## Approach
 
